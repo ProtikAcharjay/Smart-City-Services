@@ -15,9 +15,19 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/auth/login');
 });
-Route::get('/auth/login',[MainController::class,'login'])->name('auth.login');
+
 Route::post('/auth/login',[MainController::class,'loggedin'])->name('auth.login');
-Route::get('/auth/register',[MainController::class,'register'])->name('auth.register');
+
 Route::post('/auth/register',[MainController::class,'registered'])->name('auth.register');
+Route::get('/auth/logout',[MainController::class,'logout'])->name('auth.logout');
+
+Route::group(['middleware'=>['AuthCheck']], function(){
+    Route::get('/auth/login',[MainController::class,'login'])->name('auth.login');
+    Route::get('/auth/register',[MainController::class,'register'])->name('auth.register');
+    Route::get('/customer/homepage',[MainController::class,'homepage']);
+    Route::get('/admin/homepage',[MainController::class,'adminhommepage']);
+});
+
+

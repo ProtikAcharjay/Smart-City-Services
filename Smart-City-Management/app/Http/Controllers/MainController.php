@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;;
 use App\Models\Customer;
+use App\Models\Admin;
 
 
 class MainController extends Controller
@@ -51,8 +52,12 @@ class MainController extends Controller
         // validation
         $request->validate([
             'email'=>'required',
-            'password'=>'required'
+            'password'=>'required',
+            'logintype' => 'required'
         ]);
+
+
+if($request->logintype == 'Customer'){
 
         $customerinfo= Customer::where('c_email','=', $request->email)->first();
         if(!$customerinfo){
@@ -67,6 +72,46 @@ class MainController extends Controller
             else{
                 return back()->with('fail','Incorrect Password');
             }
+        }
+
+    }    //customer login end
+
+    //admin login start
+    if($request->logintype == 'Admin'){
+
+        $admininfo= Admin::where('admin_email','=', $request->email)->first();
+        if(!$admininfo){
+            return back()->with('fail','Enter a valid email address');
+        }
+        else{
+            //checking pass
+            $admininfo= Admin::where('admin_password','=', $request->password)->first();
+            if($admininfo){
+                $request->session()->put('loggeduser',$admininfo->admin_id);
+                return redirect('admin/homepage');
+            }
+            else{
+                return back()->with('fail','Incorrect Password');
+            }
+        }
+
+    }
+}
+
+
+    function homepage(){
+        $data=['loggeduserinfo'=> Customer::where('c_id' , '=', session('loggeduser'))->first()];
+        return view('customer.homepage',$data);
+    }
+    function adminhommepage(){
+        $data=['loggeduserinfo'=> Admin::where('admin_id' , '=', session('loggeduser'))->first()];
+        return view('admin.homepage',$data);
+    }
+
+    function logout(){
+        if(session()->has('loggeduser')){
+            session()-> pull('loggeduser');
+            return redirect('/auth/login');
         }
 
     }

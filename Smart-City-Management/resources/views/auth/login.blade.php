@@ -35,6 +35,19 @@
                     <input type="password" class="form-control" name="password" placeholder="Enter your password">
                     <span class="text-danger">@error('password'){{ $message }} @enderror</span>
                 </div>
+                <div class="form-group">
+                    <label>Login As</label>
+                    <br>
+                    <input type="radio" id="admin" name="logintype" value="Admin">
+                    <label for="admin">Admin</label>
+                    &nbsp
+                    <input type="radio" id="employee" name="logintype" value="Employee">
+                    <label for="employee">Employee</label>
+                    &nbsp
+                    <input type="radio" id="customer" name="logintype" value="Customer">
+                    <label for="customer">Customer</label>
+                    <span class="text-danger">@error('logintype'){{ $message }} @enderror</span>
+                </div>
                 <button type="submit" class="btn btn-block btn-primary"> Sign in</button>
                 <br>
                 <a href="{{ route('auth.register') }}">Don't Have An Account? Create here</a>
