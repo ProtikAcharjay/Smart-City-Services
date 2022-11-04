@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;;
 use App\Models\Customer;
 use App\Models\Admin;
+use Illuminate\Support\Facades\DB;
+use App\Models\cl_emp;
+use App\Models\pl_emp;
+use App\Models\el_emp;
 
 
 class MainController extends Controller
@@ -56,7 +60,7 @@ class MainController extends Controller
             'logintype' => 'required'
         ]);
 
-
+//customer login start
 if($request->logintype == 'Customer'){
 
         $customerinfo= Customer::where('c_email','=', $request->email)->first();
@@ -88,7 +92,7 @@ if($request->logintype == 'Customer'){
             $admininfo= Admin::where('admin_password','=', $request->password)->first();
             if($admininfo){
                 $request->session()->put('loggeduser',$admininfo->admin_id);
-                return redirect('admin/homepage');
+                return redirect('admin/addemPage');
             }
             else{
                 return back()->with('fail','Incorrect Password');
@@ -96,6 +100,64 @@ if($request->logintype == 'Customer'){
         }
 
     }
+    //admin login end
+    //Electrician Employee login start
+if($request->logintype == 'Elemp'){
+
+    $elempinfo= el_emp::where('el_emp_email','=', $request->email)->first();
+    if(!$elempinfo){
+        return back()->with('fail','Enter a valid email address');
+    }
+    else{
+        //checking pass
+        if(Hash::check($request->password, $elempinfo->el_emp_password)){
+            $request->session()->put('loggeduser',$elempinfo->el_emp_id);
+            return redirect('elemp/homepage'); //need to change later
+        }
+        else{
+            return back()->with('fail','Incorrect Password');
+        }
+    }
+
+}    //Electrician Employee login end
+    //Cleaner Employee login start
+if($request->logintype == 'Clemp'){
+
+    $clempinfo= cl_emp::where('cl_emp_email','=', $request->email)->first();
+    if(!$clempinfo){
+        return back()->with('fail','Enter a valid email address');
+    }
+    else{
+        //checking pass
+        if(Hash::check($request->password, $clempinfo->cl_emp_password)){
+            $request->session()->put('loggeduser',$clempinfo->cl_emp_id);
+            return redirect('clemp/homepage'); //need to change later
+        }
+        else{
+            return back()->with('fail','Incorrect Password');
+        }
+    }
+
+}    //Cleaner Employee login end
+    //Plumber Employee login start
+if($request->logintype == 'Plemp'){
+
+    $plempinfo= pl_emp::where('pl_emp_email','=', $request->email)->first();
+    if(!$plempinfo){
+        return back()->with('fail','Enter a valid email address');
+    }
+    else{
+        //checking pass
+        if(Hash::check($request->password, $plempinfo->pl_emp_password)){
+            $request->session()->put('loggeduser',$plempinfo->pl_emp_id);
+            return redirect('plemp/homepage'); //need to change later
+        }
+        else{
+            return back()->with('fail','Incorrect Password');
+        }
+    }
+
+}    //Plumber Employee login end
 }
 
 
@@ -106,6 +168,18 @@ if($request->logintype == 'Customer'){
     function adminhommepage(){
         $data=['loggeduserinfo'=> Admin::where('admin_id' , '=', session('loggeduser'))->first()];
         return view('admin.homepage',$data);
+    }
+    function elemphome(){
+        $data=['loggeduserinfo'=> el_emp::where('el_emp_id' , '=', session('loggeduser'))->first()];
+        return view('employee.elemphome',$data);
+    }
+    function clemphome(){
+        $data=['loggeduserinfo'=> cl_emp::where('cl_emp_id' , '=', session('loggeduser'))->first()];
+        return view('employee.clemphome',$data);
+    }
+    function plemphome(){
+        $data=['loggeduserinfo'=> pl_emp::where('pl_emp_id' , '=', session('loggeduser'))->first()];
+        return view('employee.plemphome',$data);
     }
 
     function logout(){

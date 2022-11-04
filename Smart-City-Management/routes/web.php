@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AddempController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,16 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/auth/register',[MainController::class,'register'])->name('auth.register');
     Route::get('/customer/homepage',[MainController::class,'homepage']);
     Route::get('/admin/homepage',[MainController::class,'adminhommepage']);
+    //adding emp route
+Route::get('admin/addemPage',[AddempController::class,'addemp'])->name('admin.addemPage');
+Route::post('admin/addemPage',[AddempController::class,'add'])->name('admin.addemPage');
 });
+
+Route::get('/elemp/homepage',[MainController::class,'elemphome']);
+Route::get('/clemp/homepage',[MainController::class,'clemphome']);
+Route::get('/plemp/homepage',[MainController::class,'plemphome']);
+
+
+
 
 

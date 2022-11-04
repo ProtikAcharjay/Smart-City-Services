@@ -41,11 +41,17 @@
                     <input type="radio" id="admin" name="logintype" value="Admin">
                     <label for="admin">Admin</label>
                     &nbsp
-                    <input type="radio" id="employee" name="logintype" value="Employee">
-                    <label for="employee">Employee</label>
-                    &nbsp
                     <input type="radio" id="customer" name="logintype" value="Customer">
                     <label for="customer">Customer</label>
+
+                    <input type="radio" id="elemp" name="logintype" value="Elemp">
+                    <label for="elemp">Electrician Employee</label>
+                    &nbsp
+                    <input type="radio" id="clemp" name="logintype" value="Clemp">
+                    <label for="clemp">Cleaner Employee</label>
+                    &nbsp
+                    <input type="radio" id="plemp" name="logintype" value="Plemp">
+                    <label for="plemp">Plumber Employee</label>
                     <span class="text-danger">@error('logintype'){{ $message }} @enderror</span>
                 </div>
                 <button type="submit" class="btn btn-block btn-primary"> Sign in</button>
