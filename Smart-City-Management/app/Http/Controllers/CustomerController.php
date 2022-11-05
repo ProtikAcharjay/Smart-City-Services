@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
+
 class CustomerController extends Controller
 {
     /**
@@ -13,6 +14,8 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         //
@@ -82,5 +85,6 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+
     }
 }

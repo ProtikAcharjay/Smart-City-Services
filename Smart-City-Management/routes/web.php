@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ReqserviceController;
 use App\Http\Controllers\AddempController;
 use App\Http\Controllers\ElectricianController;
 use App\Http\Controllers\CleanerController;
@@ -30,7 +32,7 @@ Route::get('/auth/logout',[MainController::class,'logout'])->name('auth.logout')
 Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/auth/login',[MainController::class,'login'])->name('auth.login');
     Route::get('/auth/register',[MainController::class,'register'])->name('auth.register');
-    Route::get('/customer/homepage',[MainController::class,'homepage']);
+
     Route::get('/admin/homepage',[MainController::class,'adminhommepage']);
     //adding emp route
 Route::get('admin/addemPage',[AddempController::class,'addemp'])->name('admin.addemPage');
@@ -51,6 +53,10 @@ Route::get('/plemp/homepage',[plumberController::class,'Plumber'])->name('employ
 Route::post('/plemp/homepage',[plumberController::class,'addPlumber'])->name('employee.plumberHome');
 
 });
+
+Route::get('/customer/homepage',[ReqserviceController::class,'homepage'])->name('customer.homepage');
+Route::post('/customer/homepage',[ReqserviceController::class,'reqservice'])->name('customer.homepage');
+
 
 // Route::get('/elemp/homepage',[MainController::class,'elemphome']);
 // Route::get('/clemp/homepage',[MainController::class,'clemphome']);
