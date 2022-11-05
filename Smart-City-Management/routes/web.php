@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AddempController;
+use App\Http\Controllers\ElectricianController;
+use App\Http\Controllers\CleanerController;
+use App\Http\Controllers\PlumberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +35,26 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     //adding emp route
 Route::get('admin/addemPage',[AddempController::class,'addemp'])->name('admin.addemPage');
 Route::post('admin/addemPage',[AddempController::class,'add'])->name('admin.addemPage');
+
+//employee
+
+//shojib employee adding cl el pl
+Route::get('/elemp/homepage',[ElectricianController::class,'Electrician'])->name('employee.electricianHome');
+Route::post('/elemp/homepage',[ElectricianController::class,'addElectrician'])->name('employee.electricianHome');
+
+
+Route::get('/clemp/homepage',[cleanerController::class,'Cleaner'])->name('employee.cleanerHome');
+Route::post('/clemp/homepage',[cleanerController::class,'addCleaner'])->name('employee.cleanerHome');
+
+
+Route::get('/plemp/homepage',[plumberController::class,'Plumber'])->name('employee.plumberHome');
+Route::post('/plemp/homepage',[plumberController::class,'addPlumber'])->name('employee.plumberHome');
+
 });
 
-Route::get('/elemp/homepage',[MainController::class,'elemphome']);
-Route::get('/clemp/homepage',[MainController::class,'clemphome']);
-Route::get('/plemp/homepage',[MainController::class,'plemphome']);
+// Route::get('/elemp/homepage',[MainController::class,'elemphome']);
+// Route::get('/clemp/homepage',[MainController::class,'clemphome']);
+// Route::get('/plemp/homepage',[MainController::class,'plemphome']);
 
 
 

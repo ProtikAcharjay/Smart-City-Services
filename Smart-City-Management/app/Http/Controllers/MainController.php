@@ -169,18 +169,18 @@ if($request->logintype == 'Plemp'){
         $data=['loggeduserinfo'=> Admin::where('admin_id' , '=', session('loggeduser'))->first()];
         return view('admin.homepage',$data);
     }
-    function elemphome(){
-        $data=['loggeduserinfo'=> el_emp::where('el_emp_id' , '=', session('loggeduser'))->first()];
-        return view('employee.elemphome',$data);
-    }
-    function clemphome(){
-        $data=['loggeduserinfo'=> cl_emp::where('cl_emp_id' , '=', session('loggeduser'))->first()];
-        return view('employee.clemphome',$data);
-    }
-    function plemphome(){
-        $data=['loggeduserinfo'=> pl_emp::where('pl_emp_id' , '=', session('loggeduser'))->first()];
-        return view('employee.plemphome',$data);
-    }
+    // function elemphome(){
+    //     $data=['loggeduserinfo'=> el_emp::where('el_emp_id' , '=', session('loggeduser'))->first()];
+    //     return view('employee.elemphome',$data);
+    // }
+    // function clemphome(){
+    //     $data=['loggeduserinfo'=> cl_emp::where('cl_emp_id' , '=', session('loggeduser'))->first()];
+    //     return view('employee.clemphome',$data);
+    // }
+    // function plemphome(){
+    //     $data=['loggeduserinfo'=> pl_emp::where('pl_emp_id' , '=', session('loggeduser'))->first()];
+    //     return view('employee.plemphome',$data);
+    // }
 
     function logout(){
         if(session()->has('loggeduser')){

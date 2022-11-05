@@ -19,5 +19,6 @@
     <a href="{{ route('auth.logout') }}"> Logout </a>
 </h3>
 
+
   </body>
 </html>
