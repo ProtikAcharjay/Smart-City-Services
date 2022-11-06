@@ -39,6 +39,12 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 Route::get('admin/addemPage',[AddempController::class,'addemp'])->name('admin.addemPage');
 Route::post('admin/addemPage',[AddempController::class,'add'])->name('admin.addemPage');
 
+//customer
+Route::get('/customer/homepage',[ReqserviceController::class,'homepage'])->name('customer.homepage');
+Route::post('/customer/homepage',[ReqserviceController::class,'reqservice'])->name('customer.homepage');
+Route::get('/customer/homepage',[CustomerController::class,'customer_details'])->name('customer.details');
+
+
 //employee
 
 //shojib employee adding cl el pl
@@ -53,8 +59,7 @@ Route::post('/clemp/homepage',[cleanerController::class,'addCleaner'])->name('em
 Route::get('/plemp/homepage',[plumberController::class,'Plumber'])->name('employee.plumberHome');
 Route::post('/plemp/homepage',[plumberController::class,'addPlumber'])->name('employee.plumberHome');
 
-Route::get('/customer/homepage',[ReqserviceController::class,'homepage'])->name('customer.homepage');
-Route::post('/customer/homepage',[ReqserviceController::class,'reqservice'])->name('customer.homepage');
+
 
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use Illuminate\Support\Facades\DB;
 
 
 class CustomerController extends Controller
@@ -14,7 +15,12 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    function customer_details(){
+        $data=array(
+            'list'=>DB::table('customers')->get()
+        );
+        return view('customer.details',$data);
+    }
 
     public function index()
     {
