@@ -14,6 +14,9 @@ use App\Models\el_emp;
 
 class MainController extends Controller
 {
+    function welcome(){
+        return view('welcome');
+    }
     function login(){
         return view('auth.login');
     }
@@ -161,10 +164,7 @@ if($request->logintype == 'Plemp'){
 }
 
 
-    function homepage(){
-        $data=['loggeduserinfo'=> Customer::where('c_id' , '=', session('loggeduser'))->first()];
-        return view('customer.homepage',$data);
-    }
+
     function adminhommepage(){
         $data=['loggeduserinfo'=> Admin::where('admin_id' , '=', session('loggeduser'))->first()];
         return view('admin.homepage',$data);

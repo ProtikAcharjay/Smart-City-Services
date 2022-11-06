@@ -20,11 +20,12 @@ use App\Http\Controllers\PlumberController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/auth/login');
-});
-
+// Route::get('/', function () {
+//     return redirect('/auth/login');
+// });
+Route::get('/',[MainController::class,'welcome']);
 Route::post('/auth/login',[MainController::class,'loggedin'])->name('auth.login');
+Route::get('/auth/login',[MainController::class,'loggedin'])->name('auth.login');
 
 Route::post('/auth/register',[MainController::class,'registered'])->name('auth.register');
 Route::get('/auth/logout',[MainController::class,'logout'])->name('auth.logout');
@@ -52,10 +53,11 @@ Route::post('/clemp/homepage',[cleanerController::class,'addCleaner'])->name('em
 Route::get('/plemp/homepage',[plumberController::class,'Plumber'])->name('employee.plumberHome');
 Route::post('/plemp/homepage',[plumberController::class,'addPlumber'])->name('employee.plumberHome');
 
-});
-
 Route::get('/customer/homepage',[ReqserviceController::class,'homepage'])->name('customer.homepage');
 Route::post('/customer/homepage',[ReqserviceController::class,'reqservice'])->name('customer.homepage');
+
+});
+
 
 
 // Route::get('/elemp/homepage',[MainController::class,'elemphome']);

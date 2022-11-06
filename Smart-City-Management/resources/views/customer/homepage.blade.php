@@ -1,3 +1,5 @@
+@extends('layouts.customer_app')
+@section('content')
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,10 +12,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-<h2>
+<h5 style="text-align: right">
     Welcome {{$loggeduserinfo['c_name']}}
 
-</h2>
+</h5>
 <div class="container">
     <div class="row">
         <div class="col" style="margin:20px 300px">
@@ -64,9 +66,10 @@
             <br>
 
 <h3>
-    <a href="{{ route('auth.logout') }}"> Logout </a>
+    {{-- <a href="{{ route('auth.logout') }}"> Logout </a> --}}
 </h3>
 
 
   </body>
 </html>
+@endsection

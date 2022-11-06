@@ -29,25 +29,25 @@ class ReqserviceController extends Controller
         ]);
     //    return $request->input();
 
-        $data=[Customer::where('c_id' , '=', session('loggeduser'))->first()];
-        return $data;
-        // registering in database
-        // $reqservice= new Reqservice;
-        // $reqservice->c_id = $data['c_id'];
-        // $reqservice->c_email = $data['c_email'];
-        // $reqservice->c_name = $data['c_name'];
-        // $reqservice->req_service = $request->reqtype;
-        // $reqservice->req_time = $request->reqdate;
-        // $reqservice->req_address = $request->reqaddress;
+        $data=Customer::where('c_id' , '=', session('loggeduser'))->first();
+        // return $data->c_id;
+        //registering in database
+        $reqservice= new Reqservice;
+        $reqservice->c_id = $data->c_id;
+        $reqservice->c_email = $data->c_email;
+        $reqservice->c_name = $data->c_name;
+        $reqservice->req_service = $request->reqtype;
+        $reqservice->req_time = $request->reqdate;
+        $reqservice->req_address = $request->reqaddress;
 
-        // $save=$reqservice->save();
+        $save=$reqservice->save();
 
-        // if($save){
-        //     return back()->with('success','Requested successfully, Please Wait till assigning the service');
-        // }
-        // else{
-        //     return back()->with('fail','something went wrong, try again later');
-        // }
+        if($save){
+            return back()->with('success','Requested successfully, Please Wait till assigning the service');
+        }
+        else{
+            return back()->with('fail','something went wrong, try again later');
+        }
 
     }
     public function index()

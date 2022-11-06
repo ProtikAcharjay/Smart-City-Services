@@ -1,3 +1,5 @@
+@extends('layouts.plemp_app')
+@section('content')
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,14 +12,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-<h1>homepage of Plumber Employee</h1>
+    <h5 style="text-align: right">Plumber Employee</h5>
 
 <div class="container">
   <div class="row">
-      <div class="col" style="margin:80px 300px">
-          <div class="form-group">
-            
- 
+      <div class="col" style="margin:40px 300px">
       <form action= {{ route('employee.plumberHome') }} method="post">
         <h4>Add Plumber</h4>
 
@@ -50,7 +49,7 @@
 
 </div>
 
-</div>
+
 <div class="form-group">
   <label for="">Addess</label>
   <input type="text" class="form-control" name="address">
@@ -89,11 +88,9 @@
 </div>
 <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block">Add</button>
-    
 
-<h3>
-    <a href="{{ route('auth.logout') }}"> Logout </a>
-</h3>
 
   </body>
 </html>
+
+@endsection

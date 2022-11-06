@@ -1,3 +1,5 @@
+@extends('layouts.admin_app')
+@section('content')
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,19 +10,25 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+  #welad{
+    color: blue;
+  }
+    </style>
+
   </head>
   <body>
+
     <div class="container">
+        <h3 style="text-align: right" id="welad" >Welcome Admin</h3>
         <div class="row">
-            <div class="col" style="margin:80px 300px">
-                <div class="form-group">
+            <div class="col" style="margin:30px 300px">
+
 
 
             <form action= {{ route('admin.addemPage') }} method="post">
 
                 <h4>Add Employee</h4>
-
-                    <br>
                     <hr>
                     @if(Session::get('success'))
                     <div class="alert alert-success">
@@ -41,7 +49,7 @@
                     <input type="radio" id="plumber" name="addtype" value="Plumber">
                     <label for="customer">Plumber</label>
                     <span class="text-danger">@error('logintype'){{ $message }} @enderror</span>
-                </div>
+
 
                 @csrf
                 <div class="form-group">
@@ -92,9 +100,8 @@
         </div>
 
     </div>
-    <h3>
-        <a href="{{ route('auth.logout') }}"> Logout </a>
-    </h3>
+
 
   </body>
 </html>
+@endsection
