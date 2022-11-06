@@ -20,18 +20,11 @@ class CustomerController extends Controller
 
         $search=$request->search ?? "";
         if($search!=""){
-            // Customer::where('c_name','=',$search)->get();
-            // $data2=array(
-            //     'list'=>Customer::where('c_name','=',$search)->get()
-            // );
+
             $customers= Customer::where('c_name','LIKE', "%$search%")->get();
 
         }else{
-            // $customer=Customer::all();
-            // $customers= DB::table('customers')->get();
-            // $data=array(
-            //     'list'=>DB::table('customers')->get()
-            // );
+
             $customers=Customer::paginate(7);
         }
     $data=compact('customers','search');

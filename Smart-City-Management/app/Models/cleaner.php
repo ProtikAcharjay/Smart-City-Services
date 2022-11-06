@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class cleaner extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'cl_id';
 }

@@ -72,7 +72,9 @@ if($request->logintype == 'Customer'){
         }
         else{
             //checking pass
-            if(Hash::check($request->password, $customerinfo->c_password)){
+
+            $customerinfo= Customer::where('c_password','=', $request->password)->first();
+            if($customerinfo){
                 $request->session()->put('loggeduser',$customerinfo->c_id);
                 return redirect('customer/homepage');
             }
