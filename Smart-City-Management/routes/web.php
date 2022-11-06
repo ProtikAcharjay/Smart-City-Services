@@ -42,7 +42,7 @@ Route::post('admin/addemPage',[AddempController::class,'add'])->name('admin.adde
 //customer
 Route::get('/customer/homepage',[ReqserviceController::class,'homepage'])->name('customer.homepage');
 Route::post('/customer/homepage',[ReqserviceController::class,'reqservice'])->name('customer.homepage');
-Route::get('/customer/homepage',[CustomerController::class,'customer_details'])->name('customer.details');
+Route::get('/customer/details',[CustomerController::class,'customer_details'])->name('customer.details');
 
 
 //employee

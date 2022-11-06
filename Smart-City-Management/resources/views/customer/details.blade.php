@@ -14,6 +14,15 @@
   <body>
 
     <h3 style="text-align: center">Customer Details</h3>
+<br>
+{{-- search  --}}
+<form action="" style="width: 500px">
+<div class="form-group">
+  <input type="search" name="search" id="" class="form-control" placeholder="Search Customer by name" value="{{$search}}" >
+</div>
+<button class="btn btn-primary">Search</button>
+</form>
+
 <table class="table">
 
     <thead>
@@ -36,7 +45,7 @@
 
     <tbody>
 
-        @foreach ($list as $i)
+        @foreach ($customers as $i)
 
         <tr>
 
@@ -61,6 +70,10 @@
     </tbody>
 
 </table>
+
+<div class="d-flex justify-content-center">
+    {!! $customers->links() !!}
+</div>
   </body>
 </html>
 @endsection

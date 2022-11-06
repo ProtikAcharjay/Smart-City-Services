@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 class CustomerController extends Controller
@@ -15,11 +16,26 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function customer_details(){
-        $data=array(
-            'list'=>DB::table('customers')->get()
-        );
-        return view('customer.details',$data);
+    function customer_details(Request $request){
+
+        $search=$request->search ?? "";
+        if($search!=""){
+            // Customer::where('c_name','=',$search)->get();
+            // $data2=array(
+            //     'list'=>Customer::where('c_name','=',$search)->get()
+            // );
+            $customers= Customer::where('c_name','LIKE', "%$search%")->get();
+
+        }else{
+            // $customer=Customer::all();
+            // $customers= DB::table('customers')->get();
+            // $data=array(
+            //     'list'=>DB::table('customers')->get()
+            // );
+            $customers=Customer::paginate(7);
+        }
+    $data=compact('customers','search');
+        return view('customer.details')->with($data);
     }
 
     public function index()
