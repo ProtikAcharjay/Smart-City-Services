@@ -16,7 +16,7 @@ class CleanerController extends Controller
 
 
     function addCleaner(Request $request){
-       
+
 
         $request->validate([
             'name'=>'required',
@@ -27,7 +27,7 @@ class CleanerController extends Controller
             'nid'=>'required',
             'jobloc'=>'required',
             'status'=>'required'
-           
+
         ]);
 
 
@@ -40,10 +40,10 @@ class CleanerController extends Controller
         $cl->cl_nid = $request->nid;
         $cl->cl_joblocation = $request->jobloc;
         $cl->cl_status = $request->status;
-        
-       
+
+
         $save=$cl->save();
-    
+
         if($save){
             return back()->with('success','Registered successfully');
         }
@@ -51,4 +51,64 @@ class CleanerController extends Controller
             return back()->with('fail','something went wrong, try again later');
         }
     }
+    function show()
+    {
+
+        $data=array(
+            'list'=>DB::table('cleaners')->get()
+        );
+        return view('employee.cl_emp_show',$data);
+    }
+    function update($id)
+    {
+
+        $row= DB::table('cleaners')
+        ->where('cl_id',$id)
+        ->first();
+
+        $data=[
+            'info'=>$row
+        ];
+
+        return view('employee.cl_emp_update',$data);
+    }
+    function edit( Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'dob'=>'required',
+            'salary'=>'required',
+            'nid'=>'required',
+            'jobloc'=>'required',
+            'status'=>'required'
+
+        ]);
+
+        $updating= DB::table('cleaners')->where('cl_id',$request->input('cl_id'))->update([
+         'cl_name'=> $request->input('name'),
+         'cl_phone'=> $request->input('phone'),
+         'cl_address'=> $request->input('address'),
+         'cl_dob'=> $request->input('dob'),
+         'cl_salary'=> $request->input('salary'),
+         'cl_nid'=> $request->input('nid'),
+         'cl_joblocation' => $request->input('jobloc'),
+         'cl_status'=> $request->input('status')
+
+      ]);
+
+      return redirect('clshow');
+
+
+
+
+}
+function delete($id)
+{
+    $del= DB::table('cleaners')
+    ->where('cl_id',$id)
+    ->delete();
+    return redirect('clshow');
+}
 }

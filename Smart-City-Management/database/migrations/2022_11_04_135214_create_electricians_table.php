@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('el_nid');
             $table->string('el_joblocation');
             $table->boolean('el_status');
-           
-            
+
+
             $table->timestamps();
         });
     }

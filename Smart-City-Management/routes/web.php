@@ -59,7 +59,28 @@ Route::post('/clemp/homepage',[cleanerController::class,'addCleaner'])->name('em
 Route::get('/plemp/homepage',[plumberController::class,'Plumber'])->name('employee.plumberHome');
 Route::post('/plemp/homepage',[plumberController::class,'addPlumber'])->name('employee.plumberHome');
 
+//for electrician update and delete
 
+Route::get('/elshow',[ElectricianController::class,'show'])->name('employee.el_emp_show');
+Route::get('/update/{id}',[ElectricianController::class,'update'])->name('employee.el_emp_show');
+Route::post('/edit',[ElectricianController::class,'edit'])->name('edit');
+
+Route::get('delete/{id}',[ElectricianController::class,'delete']);
+
+
+//for cleaner update and delete
+Route::get('/clshow',[CleanerController::class,'show'])->name('employee.cl_emp_show');
+Route::get('/update/{id}',[CleanerController::class,'update'])->name('employee.cl_emp_show');
+Route::post('/edit',[CleanerController::class,'cedit'])->name('edit');
+
+Route::get('cdelete/{id}',[CleanerController::class,'delete']);
+
+//for plumber update and delete
+Route::get('/plshow',[PlumberController::class,'show'])->name('employee.pl_emp_show');
+Route::get('/update/{id}',[PlumberController::class,'update'])->name('employee.pl_emp_show');
+Route::post('/edit',[PlumberController::class,'edit'])->name('edit');
+
+Route::get('delete/{id}',[PlumberController::class,'delete']);
 
 });
 

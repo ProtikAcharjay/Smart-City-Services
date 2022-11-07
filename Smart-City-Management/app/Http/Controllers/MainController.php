@@ -28,7 +28,7 @@ class MainController extends Controller
         // validation
         $request->validate([
             'name'=>'required',
-            'email'=>'required|unique:customers',  //when there is no data checking uique could generate error
+            'email'=>'required',  //when there is no data checking uique could generate error
             'phone'=>'required',
             'dob'=>'required',
             'address'=>'required',
