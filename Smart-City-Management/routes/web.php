@@ -25,7 +25,7 @@ use App\Http\Controllers\PlumberController;
 // });
 Route::get('/',[MainController::class,'welcome']);
 Route::post('/auth/login',[MainController::class,'loggedin'])->name('auth.login');
-Route::get('/auth/login',[MainController::class,'loggedin'])->name('auth.login');
+// Route::get('/auth/login',[MainController::class,'loggedin'])->name('auth.login');
 
 Route::post('/auth/register',[MainController::class,'registered'])->name('auth.register');
 Route::get('/auth/logout',[MainController::class,'logout'])->name('auth.logout');

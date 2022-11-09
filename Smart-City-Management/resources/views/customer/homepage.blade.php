@@ -65,9 +65,7 @@
             <button type="submit" class="btn btn-block btn-primary"> Request</button>
             <br>
 
-<h3>
-    {{-- <a href="{{ route('auth.logout') }}"> Logout </a> --}}
-</h3>
+
 
 
   </body>

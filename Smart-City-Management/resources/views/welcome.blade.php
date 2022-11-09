@@ -48,6 +48,7 @@
     <hr>
     <div>
         <a class="btn btn-primary" href="{{route('auth.login')}}">Get Started</a>
+        {{-- redirect('/auth/login'); --}}
     </div>
     <hr>
 
