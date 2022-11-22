@@ -31,6 +31,33 @@ class CustomerController extends Controller
         return view('customer.details')->with($data);
     }
 
+    function APIcustomer(){
+
+        return Customer::all();
+    }
+    function APIcustomerpost(){
+
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'dob'=>'required',
+            'address'=>'required',
+            'password'=>'required'
+        ]);
+
+        $customer= new Customer;
+        $customer->c_name = $request->name;
+        $customer->c_email = $request->email;
+        $customer->c_phone = $request->phone;
+        $customer->c_dob = $request->dob;
+        $customer->c_address = $request->address;
+        $customer->c_password = Hash::make($request->password);
+        $save=$customer->save();
+        return $request;
+
+    }
+
     public function index()
     {
         //
