@@ -1,0 +1,23 @@
+
+body{
+background-color: blueviolet;
+}
+.req{
+    background-color: antiquewhite;
+    border: 3px solid purple;
+    margin-top: 75px;
+    margin-left: 255px;
+    text-align: justify;
+    padding: 15px 200px;
+    height: 400px;
+    width: 250px;
+    font-family: cursive;
+    
+}
+label{
+    font-size: large;
+}
+input{
+    text-align: center;
+}
+
