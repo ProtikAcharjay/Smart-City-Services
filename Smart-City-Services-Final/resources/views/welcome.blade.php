@@ -16,7 +16,7 @@
                 /* background-size:100%; */
 
                 text-align: center;
-
+                border-radius: 20px;
                 margin: 10px;
 
 

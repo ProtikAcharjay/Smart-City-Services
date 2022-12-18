@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Models\el_emp;
+use App\Models\pl_emp;
+use App\Models\cl_emp;
 
 class EmployeeController extends Controller
 {
@@ -16,6 +21,18 @@ class EmployeeController extends Controller
     public function index()
     {
         //
+    }
+    function APIemployee(){
+
+        return el_emp::all();
+    }
+    function APIemployeepl(){
+
+        return pl_emp::all();
+    }
+    function APIemployeecl(){
+
+        return cl_emp::all();
     }
 
     /**

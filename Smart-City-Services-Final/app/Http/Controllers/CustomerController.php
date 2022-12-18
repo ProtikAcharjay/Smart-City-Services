@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Reqservice;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Support\Facades\DB;
@@ -35,27 +36,39 @@ class CustomerController extends Controller
 
         return Customer::all();
     }
-    function APIcustomerpost(){
-
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
-            'dob'=>'required',
-            'address'=>'required',
-            'password'=>'required'
-        ]);
+    function register(Request $request){
 
         $customer= new Customer;
-        $customer->c_name = $request->name;
+        $customer->c_name = $request->cname;
         $customer->c_email = $request->email;
         $customer->c_phone = $request->phone;
         $customer->c_dob = $request->dob;
         $customer->c_address = $request->address;
-        $customer->c_password = Hash::make($request->password);
+        $customer->c_password = $request->password;
         $save=$customer->save();
-        return $request;
+        return $save;
 
+    }
+    function userreq(Request $request){
+        $data=Customer::where('c_id' , '=', session('loggeduser'))->first();
+        // return $data->c_id;
+        //registering in database
+        $reqservice= new Reqservice;
+        $reqservice->c_id = $data->c_id;
+        $reqservice->c_email = $data->c_email;
+        $reqservice->c_name = $data->c_name;
+        $reqservice->req_service = $request->reqtype;
+        $reqservice->req_time = $request->reqtime;
+        $reqservice->req_address = $request->address;
+
+        $save=$reqservice->save();
+
+        if($save){
+            return back()->with('success','Requested successfully, Please Wait till assigning the service');
+        }
+        else{
+            return back()->with('fail','something went wrong, try again later');
+        }
     }
 
     public function index()
