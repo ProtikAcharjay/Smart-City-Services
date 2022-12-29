@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\cleaner;
+use App\Models\plumber;
+use App\Models\electrician;
 use App\Models\cl_emp;
 
 class ApiController extends Controller
@@ -12,11 +14,21 @@ class ApiController extends Controller
     function getData()
     {
             return cleaner::all();
-       
+
+    }
+    function getDatap()
+    {
+            return plumber::all();
+
+    }
+    function getDatae()
+    {
+            return electrician::all();
+
     }
     function postData(Request $request)
     {
-            
+
         $cl= new cleaner;
         $cl->cl_name = $request->cl_name;
         $cl->cl_phone = $request->cl_phone;
@@ -27,12 +39,12 @@ class ApiController extends Controller
         $cl->cl_joblocation = $request->cl_joblocation;
         $cl->cl_status = $request->cl_status;
         $save=$cl->save();
-       
+
     }
     function login(Request $request)
     {
        $user= cl_emp::where('cl_emp_email',$request->cl_emp_email)->first();
-     
+
        return $user;
     }
    function delete($id)

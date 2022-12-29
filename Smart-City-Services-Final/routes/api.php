@@ -34,6 +34,9 @@ Route::post('/registration',[CustomerController::class,'register']);
 Route::post('/userreq',[CustomerController::class,'userreq']);
 //s
 Route::get("data",[ApiController::class,"getData"]);
+Route::get("datap",[ApiController::class,"getDatap"]);
+Route::get("datae",[ApiController::class,"getDatae"]);
+
  Route::post("data",[ApiController::class,"postData"]);
 
 
